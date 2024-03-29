@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,500,700">
+  <title>Home</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0px;
+      padding: 0;
+      background-image: url('https://cdn.glitch.global/582371c2-f513-4698-a463-559ef1f4ccf6/paw-print-941498_1920.jpg?v=1698723988311'); 
+      background-size: cover; 
+      background-repeat: no-repeat; 
+      text-align: center; 
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background-color: rgba(255, 255, 255, 0.3); /* 30% transparent white */
+      text-align: center;
+      padding: 15px;
+    }
+  
+    header img {
+      width: 300px;
+      height: 100px;
+/*       border: 2px solid #333;
+      border-radius: 10%; */
+      cursor: pointer;
+    }
+
+   @keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+}
+
+header img:hover {
+  animation: shake 0.5s ease;
+}
+
+    .description {
+      text-align: center;
+      margin: 20px;
+    }
+
+    main {
+      flex: 1; /* grow to fill available space */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    footer {
+      background-color: rgba(255, 255, 255, 0.3); /* 30% transparent white */
+      color: #333;
+      text-align: center;
+      padding: 10px;
+      position: relative;
+      bottom: 0;
+    }
+
+    p {
+      text-align: center;
+    }
+
+    .center-images {
+      text-align: center;
+    }
+
+     .center-images img {
+      width: 250px;
+      height: 250px;
+      margin: 40px;
+      cursor: pointer;
+      border-radius: 10%;
+      transition: transform 0.3s ease; 
+    }
+    
+    .center-images img:hover {
+      transform: scale(1.1); /* expand image on hover */
+    }
+    
+    h1 {
+      text-align: center;
+      text-shadow: 2px 2px 5px rgba(255, 255, 255); 
+
+/*       text-decoration: underline;  */
+
+    }
+
+    h2 {
+      position: relative;
+      color: black; 
+      padding: 0.5em 1em; /* adjust padding as needed */
+      margin: 0; 
+      text-shadow: 2px 2px 5px rgba(255, 255, 255); 
+
+    }
+    
+  footer a {
+    text-decoration: none;
+    color: #333; /* Default color */
+  }
+
+  footer a:hover {
+    color: blue !important; /* Change color on hover */
+  }
+
+  </style>
+</head>
+
+<body>
+  <header>
+    <a href="index.html">
+      <img
+        src="Logo.png"
+        alt="Interactive Logo"
+      />
+    </a>
+  </header>
+  
+  <br> <br> 
+  
+<h1>
+    Pick one:
+  </h1>
+  <div class="center-images">
+    <a href="cats.html" >
+      <img
+        src="https://cdn.glitch.global/582371c2-f513-4698-a463-559ef1f4ccf6/db69c3dbc40238c194c68f67dcdac2a8.jpg?v=1698721677901" 
+        alt="Cats"
+      />
+    </a>
+    <a href="dogs.html" >
+      <img
+        src="https://cdn.glitch.global/582371c2-f513-4698-a463-559ef1f4ccf6/AdobeStock_491912561-500x500.webp?v=1698721801155"
+        alt="Dogs"
+      />
+    </a>
+   
+  </div>
+  
+<!--   <h2>About</h2>
+  <p>
+    Cats vs. Dogs was created for the purpose of being a fun and interactive website while also providing you with resources to care for your beloved pets.
+  </p>
+
+   -->
+  
+
+<main>
+</main>
+<footer>
+  <a href="https://github.com/stam4tia" target="_blank" style="text-decoration: none; color: #333;">© 2023 Stamatia Daramboukas</a>
+</footer>
+
+
+</body>
+</html>

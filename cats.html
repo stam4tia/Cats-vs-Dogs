@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,500,700">
+  <title>Cats</title>
+      <script src="https://cdn.jsdelivr.net/npm/party-js@latest/bundle/party.min.js"></script> <!-- Confetti Script -->
+
+  <style>
+   body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0px;
+      padding: 0;
+      background-image: url('https://cdn.glitch.global/582371c2-f513-4698-a463-559ef1f4ccf6/paw-print-941498_1920.jpg?v=1698723988311'); 
+      background-size: cover; 
+      background-repeat: no-repeat; 
+      text-align: center; 
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+
+    header {
+      background-color: rgba(255, 255, 255, 0.3); /* 30% transparent white */
+      text-align: center;
+      padding: 5px;
+    }
+
+     header img {
+      width: 300px;
+      height: 100px;
+/*       border: 2px solid #333;
+      border-radius: 10%; */
+      cursor: pointer;
+    }
+
+   @keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+}
+
+header img:hover {
+  animation: shake 0.5s ease;
+}
+
+    .description {
+      text-align: center;
+      margin: 20px;
+    }
+
+    
+
+    main {
+      flex: 1; 
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    footer {
+      background-color: rgba(255, 255, 255, 0.3); /* 30% transparent white */
+      color: #333;
+      text-align: center;
+      padding: 10px;
+      position: relative;
+      bottom: 0;
+    }
+
+    p {
+      text-align: center;
+    }
+
+    .center-images {
+      text-align: center;
+    }
+
+    .center-images img {
+      width: 200px;
+      height: 200px;
+      margin: 10px;
+      cursor: pointer;
+      border-radius: 10%;
+    }
+    
+        img {
+  width: 300px;
+  height: auto; 
+  margin: 10px;
+  cursor: pointer;
+  border-radius: 15px; 
+}
+    
+    
+    
+    h1, h2 {
+  text-align: center;
+/*   text-decoration-line:  underline; */
+/*   text-decoration-style: wavy; */
+  text-shadow: 2px 2px 5px rgba(255, 255, 255); /* Soft gray shadow */
+
+    }
+    
+ 
+
+    
+
+
+#fetchCatImage:hover {
+    background-color: lightgray;
+}
+#fetchCatFact:hover {
+    background-color: lightgray;
+}
+    #button {
+        background-color: rgba(82, 180, 255, 0.778); 
+       
+    }
+
+#button:hover {
+        background-color: rgb(0, 134, 251); 
+
+  }
+
+
+    #factContainer {
+  max-width: 400px; /* Adjust the maximum width as needed */
+  margin: 0 auto; /* Center the container horizontally */
+  margin-top: 10px;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.5); /* Light gray background */
+  border-radius: 10px;
+  display: none;
+}
+
+#factText {
+  margin: 0;
+}
+    
+    footer a {
+    text-decoration: none;
+    color: #333; /* Default color */
+  }
+
+  footer a:hover {
+    color: blue !important; /* Change color on hover */
+  }
+
+  
+  
+    
+  </style>
+</head>
+<body>
+  <header>
+    <a href="index.html">
+      <img
+        src="https://cdn.glitch.global/582371c2-f513-4698-a463-559ef1f4ccf6/CatsvsDogs_Logo.png?v=1711344484939"
+        alt="Interactive Logo"
+      />
+    </a>
+  </header>
+
+
+  
+  <body>
+    <br><br>
+    <img src="cats.gif" alt="Cats Animation" style="width: 350px; margin: 0 auto;">
+    <br><br>
+    
+    <div>
+      
+      
+<a href="cat_resources.html" class="button-link">
+  <button id="button" style="border-radius: 10px; font-size: 1.5em; ">Go to Cat Resources</button>
+</a>
+
+    </div>
+<br>
+    
+  <div id="catFacts">
+    <h2></h2>
+    <button id="fetchCatFact" style="border-radius: 10px; font-size: 1.5em; opacity: 0.5;">Generate Random Cat Fact</button>
+   <div id="factContainer" >
+    <p id="factText"></p>
+  </div>
+    </div>
+    
+    <br>
+
+  <!-- add a button to generate random cat images -->
+  <div id="catImages">
+    <h2></h2>
+    <button id="fetchCatImage"  style= "border-radius: 10px; font-size: 1.5em; opacity: 0.5;">
+      Generate Random Cat Image</button>
+    <div id="imageContainer"></div>
+  </div>
+    <h2>
+      
+    </h2>
+    
+
+    
+  <script>
+  
+    // generate confetti when the page is fully loaded
+    window.addEventListener('load', () => {
+      const confettiSettings = {
+        count: 200,
+        colors: [255, 255, 255, 1],
+        position: {
+          x: Math.random() * window.innerWidth,
+          y: 0
+        },
+        size: 2,
+        decay: 0.7,
+        zIndex: 1000
+      };
+      party.confetti(document.body, confettiSettings);
+    });
+
+    // function to fetch a random cat fact
+async function fetchRandomCatFact() {
+    try {
+        const response = await fetch("https://catfact.ninja/fact?max_length=140");
+        const data = await response.json();
+        const randomFact = data.fact; // Accessing 'fact' directly
+        const factElement = document.getElementById("factText");
+        factElement.textContent = randomFact;
+
+        // Reveal the fact container when a fact is fetched
+        const factContainer = document.getElementById("factContainer");
+        factContainer.style.display = "block";
+    } catch (error) {
+        console.error("Failed to load cat fact:", error);
+    }
+}
+
+    
+        // event listener for the button to generate random cat facts
+    const fetchCatFactButton = document.getElementById("fetchCatFact");
+    fetchCatFactButton.addEventListener("click", fetchRandomCatFact);
+
+     
+
+    // function to fetch random cat images
+    async function fetchRandomCatImage() {
+      try {
+        const response = await fetch("https://api.thecatapi.com/v1/images/search");
+        const data = await response.json();
+        const imageContainer = document.getElementById("imageContainer");
+        // clear previous images
+        imageContainer.innerHTML = "";
+        data.forEach((imageData) => {
+          const image = document.createElement("img");
+          image.src = imageData.url;
+          image.alt = "Random Cat Image";
+          image.className = "center-images";
+          imageContainer.appendChild(image);
+        });
+      } catch (error) {
+        console.error("Failed to load cat images:", error);
+      }
+    }
+
+
+    // event listener for the button to fetch random cat images
+    const fetchCatImageButton = document.getElementById("fetchCatImage");
+    fetchCatImageButton.addEventListener("click", fetchRandomCatImage);
+
+    // increment the cat click count when the page loads
+    catClickCount++;
+    localStorage.setItem("catsClickCount", catClickCount);
+
+    // display initial random cat fact and cat images
+    fetchRandomCatImage();
+    
+      
+  </script>
+</body>
+  
+  
+  
+  
+  
+  
+  <main>
+  </main>
+
+<footer>
+  <a href="https://github.com/stam4tia" target="_blank" style="text-decoration: none; color: #333;">© 2023 Stamatia Daramboukas</a>
+</footer>
+  
+  </body>
+</html>
